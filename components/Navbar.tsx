@@ -3,14 +3,14 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useTheme } from "@/context/ThemeContext";
 import { motion } from "motion/react";
 
 const Navbar = () => {
   const pathname = usePathname();
-  const { darkMode } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+
+  const darkMode = true;
 
   useEffect(() => {
     setMounted(true);
