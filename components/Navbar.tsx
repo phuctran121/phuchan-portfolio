@@ -8,7 +8,7 @@ import { motion } from "motion/react";
 
 const Navbar = () => {
   const pathname = usePathname();
-  const { darkMode, toggleDarkMode } = useTheme();
+  const { darkMode } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
