@@ -33,7 +33,9 @@ const Navbar = () => {
       animate={{ scale: 1, filter: "blur(0px)" }}
       transition={{ duration: 1 }}
       className={`fixed w-full top-0 z-999 shadow-md ${
-        darkMode ? "bg-black/50 backdrop-blur-xs" : "bg-white"
+        darkMode
+          ? "bg-black/50 backdrop-blur-xs"
+          : "bg-black/50 backdrop-blur-xs"
       }`}
     >
       <div className="container mx-auto px-4">
