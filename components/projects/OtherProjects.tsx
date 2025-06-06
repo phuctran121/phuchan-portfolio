@@ -100,10 +100,10 @@ export default function OtherProjects({ projects }: { projects: Project[] }) {
                   src={project.video}
                   // alt={project.title}
                   className="w-full h-48 sm:h-56 md:h-64 object-cover transition-transform duration-500"
-                  preload="metadata"
+                  preload="auto"
                   muted
-                  autoPlay
                   playsInline
+                  autoPlay
                   loop
                   width={400}
                   height={256}
