@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useRef } from "react";
-import Image from "next/image";
+// import Image from "next/image";
 import { useAppSelector } from "@/store/hooks/hooks";
-import { motion } from "motion/react";
+import { motion, useAnimation } from "framer-motion";
 
 export default function SelectedProject() {
   const selectedProject = useAppSelector(
@@ -10,12 +10,17 @@ export default function SelectedProject() {
   );
 
   const isFirstRender = useRef(true);
+  const controls = useAnimation();
 
   useEffect(() => {
     if (selectedProject) {
       isFirstRender.current = false;
+      controls.start({
+        opacity: [0.2, 1], // từ 0 đến 1
+        x: [80, 0],
+      });
     }
-  }, [selectedProject]);
+  }, [selectedProject, controls]);
 
   if (!selectedProject) {
     return (
@@ -27,11 +32,10 @@ export default function SelectedProject() {
 
   return (
     <motion.div
-      key={selectedProject.id}
       initial={
         isFirstRender.current ? { opacity: 0, y: 40 } : { opacity: 0.2, x: 80 }
       }
-      animate={{ opacity: 1, y: 0, x: 0 }}
+      animate={isFirstRender.current ? { opacity: 1, y: 0 } : controls}
       transition={
         isFirstRender.current
           ? { duration: 0.8, delay: 0.4 }
@@ -41,20 +45,23 @@ export default function SelectedProject() {
     >
       {/* Image Block */}
       <div className="lg:col-span-5 xl:col-span-4">
-        <Image
-          src={selectedProject.image}
-          alt={selectedProject.title}
-          className="w-full h-auto max-h-[280px] sm:max-h-[320px] object-contain border-zinc-700 rounded-2xl border-2"
-          width={500}
-          height={320}
+        <video
+          src={selectedProject.video}
+          // poster={selectedProject.image}
+          className="w-full h-auto max-h-[280px] sm:min-h-[320px] object-cover border-zinc-700 rounded-2xl border-2"
+          preload="metadata"
+          muted
+          autoPlay
+          playsInline
+          loop
         />
       </div>
 
       {/* Info Block */}
-      <div className="lg:col-span-7 xl:col-span-8">
+      <div className="lg:col-span-7 xl:col-span-8 z-50">
         <div className="flex flex-col items-start justify-evenly h-full gap-3 sm:gap-4">
           <div>
-            <h2 className="text-white text-xl sm:text-2xl md:text-3xl font-bold">
+            <h2 className="text-white text-xl sm:text-2xl md:text-3xl font-bold line-clamp-1">
               {selectedProject.title}
             </h2>
             <p className="text-white/60 text-sm sm:text-base tracking-wider leading-relaxed">

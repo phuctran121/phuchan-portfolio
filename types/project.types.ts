@@ -5,6 +5,7 @@ export interface Project {
   title: string;
   category: string;
   image: StaticImageData;
+  video: string;
   description: string;
   demoLink: string;
   githubLink: string;

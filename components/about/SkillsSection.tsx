@@ -1,5 +1,6 @@
 import React from "react";
 import { Skill } from "@/types/information.types";
+import { motion } from "motion/react";
 
 interface SkillsSectionProps {
   skillsData: Skill[];
@@ -10,9 +11,16 @@ const SkillsSection = ({ skillsData }: SkillsSectionProps) => {
     <section className=" text-white flex items-center justify-center">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl auto-rows-fr">
         {skillsData.map((skill, index) => (
-          <div
+          <motion.div
             key={index}
-            className="bg-white/5 p-6 rounded-lg border border-white/20 h-full flex flex-col text-center"
+            className="bg-white/5 p-6 rounded-lg border border-white/20 h-full flex flex-col text-center transition-colors"
+            initial={{ y: 0 }}
+            transition={{ duration: 0.2 }}
+            whileHover={{
+              y: -12,
+              backgroundColor: "rgba(255, 255, 255, 0.12)", // new background on hover
+              borderColor: "rgba(255, 255, 255, 0.6)", // new border color on hover
+            }}
           >
             {/* Category */}
             <h2 className="md:text-3xl text-xl font-bold mb-4 min-h-[5rem]">
@@ -40,7 +48,7 @@ const SkillsSection = ({ skillsData }: SkillsSectionProps) => {
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>

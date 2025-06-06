@@ -9,6 +9,34 @@ import {
   FaInstagram,
 } from "react-icons/fa";
 
+const socialIcons = [
+  {
+    icon: <FaGithub />,
+    name: "GitHub",
+    link: "https://github.com/phuctran121",
+  },
+  {
+    icon: <FaLinkedinIn />,
+    name: "LinkedIn",
+    link: "https://www.linkedin.com/in/phuctran121",
+  },
+  {
+    icon: <FaGoogle />,
+    name: "Google",
+    link: "/",
+  },
+  {
+    icon: <FaFacebook />,
+    name: "Facebook",
+    link: "https://www.facebook.com/phuctran12104/",
+  },
+  {
+    icon: <FaInstagram />,
+    name: "Instagram",
+    link: "https://www.instagram.com/hpta_1214/",
+  },
+];
+
 export default function AboutNav() {
   const navLinks = [
     { title: "Introduction", path: "#introduction" },
@@ -50,21 +78,17 @@ export default function AboutNav() {
         </div>
         {/* Social icons */}
         <div className="flex flex-wrap gap-12 text-xl text-white/70">
-          <a href="#" className="hover:text-gray-300">
-            <FaGoogle />
-          </a>
-          <a href="#" className="hover:text-gray-300">
-            <FaGithub />
-          </a>
-          <a href="#" className="hover:text-gray-300">
-            <FaLinkedinIn />
-          </a>
-          <a href="#" className="hover:text-gray-300">
-            <FaFacebook />
-          </a>
-          <a href="#" className="hover:text-gray-300">
-            <FaInstagram />
-          </a>
+          {socialIcons.map((item, index) => (
+            <a
+              href={item.link}
+              key={index}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors cursor-pointer"
+            >
+              {item.icon}
+            </a>
+          ))}
         </div>
       </div>
     </motion.div>

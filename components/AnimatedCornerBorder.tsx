@@ -49,7 +49,7 @@ export default function AnimatedBorder({
       initial={{ opacity: 0, y: -10, filter: "blur(3px)" }}
       animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       transition={{ duration: 1 }}
-      className={`fixed top-1/2 left-1/2 transform mt-5 -translate-x-1/2 -translate-y-1/2 ${className}`}
+      className={`fixed top-1/2 left-1/2 hidden lg:block transform mt-5 container -translate-x-1/2 -translate-y-1/2 ${className}`}
       style={{ width, height }}
     >
       {/* Colored line with 3 segments */}

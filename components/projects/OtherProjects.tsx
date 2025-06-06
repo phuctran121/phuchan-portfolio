@@ -1,7 +1,7 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "motion/react";
-import Image from "next/image";
+// import Image from "next/image";
 import { setSelectedProject } from "@/store/slices/projectSlice";
 import { useAppDispatch, useAppSelector } from "@/store/hooks/hooks";
 import { Project } from "@/types/project.types";
@@ -13,6 +13,8 @@ export default function OtherProjects({ projects }: { projects: Project[] }) {
     (state) => state.project.selectedProject
   );
 
+  const videoRefs = useRef<{ [key: string]: HTMLVideoElement | null }>({});
+
   const filteredProjects =
     activeCategory === "All"
       ? projects
@@ -22,6 +24,17 @@ export default function OtherProjects({ projects }: { projects: Project[] }) {
     "All",
     ...new Set(projects.map((project) => project.category)),
   ];
+
+  useEffect(() => {
+    // Nếu project được chọn thay đổi, chạy lại video
+    if (selectedProject?.id) {
+      const video = videoRefs.current[selectedProject.id];
+      if (video) {
+        video.currentTime = 0;
+        video.play().catch(() => {}); // tránh lỗi nếu chưa được phép tự động phát
+      }
+    }
+  }, [selectedProject]);
 
   useEffect(() => {
     if (
@@ -72,7 +85,7 @@ export default function OtherProjects({ projects }: { projects: Project[] }) {
             className="w-full"
           >
             <div
-              className={`group bg-[#1a1a1a] rounded-xl overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:transform shadow-xs hover:shadow-md
+              className={`group bg-[#1a1a1a] rounded-xl overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:transform shadow-xs hover:shadow-xl
                 ${
                   selectedProject?.id === project.id
                     ? "border border-white/60 shadow-white/30"
@@ -80,10 +93,18 @@ export default function OtherProjects({ projects }: { projects: Project[] }) {
                 }`}
             >
               <div className="relative overflow-hidden">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-48 sm:h-56 md:h-64 object-contain transition-transform duration-500"
+                <video
+                  ref={(el) => {
+                    videoRefs.current[project.id] = el;
+                  }}
+                  src={project.video}
+                  // alt={project.title}
+                  className="w-full h-48 sm:h-56 md:h-64 object-cover transition-transform duration-500"
+                  preload="metadata"
+                  muted
+                  autoPlay
+                  playsInline
+                  loop
                   width={400}
                   height={256}
                 />

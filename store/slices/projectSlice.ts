@@ -1,16 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { StaticImageData } from "next/image";
+import { Project } from "@/types/project.types";
 
 // Định nghĩa kiểu dữ liệu cho Project
-export interface Project {
-  id: number;
-  title: string;
-  category: string;
-  image: StaticImageData;
-  description: string;
-  demoLink: string;
-  githubLink: string;
-}
 
 // Định nghĩa kiểu dữ liệu cho state
 interface ProjectState {

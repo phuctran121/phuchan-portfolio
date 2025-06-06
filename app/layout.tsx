@@ -6,11 +6,17 @@ import { Poppins } from "next/font/google";
 import Particle from "@/components/Particle";
 import Providers from "@/store/Provider";
 import SmoothFollower from "@/components/SmoothFollowerCursor";
-export const metadata: Metadata = {
-  title: "Portfolio",
-  description: "Phuchan's Portfolio",
-};
 
+export const metadata: Metadata = {
+  title: {
+    default: "Home - Portfolio",
+    template: "%s - Portfolio",
+  },
+  description: "Phuchan's Portfolio!",
+  twitter: {
+    card: "summary_large_image",
+  },
+};
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["100", "200", "400", "700", "900"],
