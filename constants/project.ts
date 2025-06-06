@@ -10,7 +10,7 @@ export const projectsData: Project[] = [
     category: "React Application",
     image: connectly,
     video:
-      "https://res.cloudinary.com/dm7nojb8g/video/upload/v1749233899/oankpzvhwavma9fbsuba.mp4",
+      "https://res.cloudinary.com/dm7nojb8g/video/upload/v1749237709/vvz1oynfxhcfndh5nstl.mp4",
     description:
       "Social networking platform that enables users to connect, interact, chat and share content in real time. Utilized MongoDB for data storage, NodeJS for a RESTful API backend, and ReactJS for the frontend; used Socket.io for real-time chat & notifications, Redux Toolkit and TanStack Query for global state management and efficient data fetching.",
     demoLink: "https://connectly-social-network-app.onrender.com/",
@@ -22,7 +22,7 @@ export const projectsData: Project[] = [
     category: "React Application",
     image: vanlang,
     video:
-      "https://res.cloudinary.com/dm7nojb8g/video/upload/v1749234955/kxeatenasixui32qvfye.mp4",
+      "https://res.cloudinary.com/dm7nojb8g/video/upload/v1749237709/xowyo5gyoih0hh9lydzv.mp4",
     description:
       "Supporting students with processes from the stage of registering a scientific research topic to the registration rounds, the stage of writing an outline to approve the topic, and the implementation stage of researching and reporting on research topics. Implemented PostgreSQL for structured relational data storage, NodeJS for a RESTful API backend, and ReactJS for the user interface; used Socket.io for real-time updates.",
     demoLink: "https://demo-link.com",
