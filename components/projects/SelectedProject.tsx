@@ -49,6 +49,7 @@ export default function SelectedProject() {
           src={selectedProject.video}
           // poster={selectedProject.image}
           className="w-full h-auto max-h-[280px] sm:min-h-[320px] object-cover border-zinc-700 rounded-2xl border-2"
+          crossOrigin="anonymous"
           preload="auto"
           muted
           playsInline

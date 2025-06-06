@@ -44,6 +44,23 @@ export default function OtherProjects({ projects }: { projects: Project[] }) {
     }
   }, [filteredProjects, dispatch, selectedProject]);
 
+  useEffect(() => {
+    const handleFirstInteraction = () => {
+      if (selectedProject?.id) {
+        const video = videoRefs.current[selectedProject.id];
+        if (video) {
+          video.play().catch(console.error);
+        }
+      }
+      document.removeEventListener("click", handleFirstInteraction);
+    };
+
+    document.addEventListener("click", handleFirstInteraction);
+    return () => {
+      document.removeEventListener("click", handleFirstInteraction);
+    };
+  }, [selectedProject]);
+
   return (
     <div className="w-full">
       {/* Filter Buttons */}
@@ -97,6 +114,7 @@ export default function OtherProjects({ projects }: { projects: Project[] }) {
                   ref={(el) => {
                     videoRefs.current[project.id] = el;
                   }}
+                  crossOrigin="anonymous"
                   src={project.video}
                   // alt={project.title}
                   className="w-full h-48 sm:h-56 md:h-64 object-cover transition-transform duration-500"
