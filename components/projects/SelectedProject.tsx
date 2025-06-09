@@ -73,19 +73,22 @@ export default function SelectedProject() {
             {selectedProject.description}
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 w-full sm:w-max mt-4">
-            <a
-              href={selectedProject.demoLink}
-              target="_blank"
-              rel="noreferrer"
-              className="w-full sm:w-auto"
-            >
-              <motion.button
-                className="px-4 sm:px-6 py-2 sm:py-3 border border-white/80 font-medium text-sm sm:text-base text-white tracking-wider rounded-xl w-full hover:bg-white/10 hover:border-white"
-                whileHover={{ scale: 1.05 }}
+            {/* Demo Link Button */}
+            {selectedProject.demoLink && (
+              <a
+                href={selectedProject.demoLink}
+                target="_blank"
+                rel="noreferrer"
+                className="w-full sm:w-auto"
               >
-                Visit Page
-              </motion.button>
-            </a>
+                <motion.button
+                  className="px-4 sm:px-6 py-2 sm:py-3 border border-white/80 font-medium text-sm sm:text-base text-white tracking-wider rounded-xl w-full hover:bg-white/10 hover:border-white"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  Visit Page
+                </motion.button>
+              </a>
+            )}
             <a
               href={selectedProject.githubLink}
               target="_blank"

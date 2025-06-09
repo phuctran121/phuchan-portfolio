@@ -25,8 +25,8 @@ export const projectsData: Project[] = [
       "https://res.cloudinary.com/dm7nojb8g/video/upload/v1749237709/xowyo5gyoih0hh9lydzv.mp4",
     description:
       "Supporting students with processes from the stage of registering a scientific research topic to the registration rounds, the stage of writing an outline to approve the topic, and the implementation stage of researching and reporting on research topics. Implemented PostgreSQL for structured relational data storage, NodeJS for a RESTful API backend, and ReactJS for the user interface; used Socket.io for real-time updates.",
-    demoLink: "https://demo-link.com",
-    githubLink: "https://github.com/username/project",
+    // demoLink: "https://demo-link.com",
+    githubLink: "https://github.com/phuctran121/SSRP-Management",
   },
   {
     id: 3,

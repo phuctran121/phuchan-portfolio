@@ -75,9 +75,13 @@ export default function HomeSection() {
             </p>
 
             {/* Button download CV */}
-            <button className="border border-white px-8 py-3 text-white w-fit hover:bg-white hover:text-black transition duration-400 cursor-pointer">
+            <a
+              href="/TRANHOANGPHUC-RESUME.pdf"
+              download
+              className="border border-white px-8 py-3 text-white w-fit hover:bg-white hover:text-black transition duration-400 cursor-pointer"
+            >
               View full Resume
-            </button>
+            </a>
 
             {/* Icon List */}
             <div className="flex flex-wrap gap-8 md:gap-12 text-white text-xl">

@@ -7,6 +7,6 @@ export interface Project {
   image: StaticImageData;
   video: string;
   description: string;
-  demoLink: string;
+  demoLink?: string;
   githubLink: string;
 }
