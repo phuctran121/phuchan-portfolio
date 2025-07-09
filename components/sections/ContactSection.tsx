@@ -40,31 +40,42 @@ const socialIcons = [
 
 export default function ContactSection() {
   const [successMessage, setSuccessMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const formRef = useRef<HTMLFormElement>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = e.target as HTMLFormElement;
-    const formData = new FormData(e.target as HTMLFormElement);
+    setLoading(true); // Bắt đầu loading
 
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
     formData.append("access_key", "f25cd664-5a00-4ae6-be62-455fbaabc415");
 
     const object = Object.fromEntries(formData);
     const json = JSON.stringify(object);
 
-    const response = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: json,
-    });
-    const result = await response.json();
-    if (result.success) {
-      setSuccessMessage("Your message has been sent successfully!");
-      form.reset();
-      setTimeout(() => setSuccessMessage(""), 3000);
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: json,
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSuccessMessage("Your message has been sent successfully!");
+        form.reset();
+        setTimeout(() => setSuccessMessage(""), 3000);
+      }
+    } catch (error) {
+      console.error("Submit error:", error);
+    } finally {
+      setLoading(false); // Tắt loading sau khi xong
     }
   };
 
@@ -121,25 +132,57 @@ export default function ContactSection() {
             type="text"
             name="name"
             placeholder="Name"
+            required
+            disabled={loading}
             className="bg-transparent border w-full border-white/40 rounded px-4 py-4 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-white"
           />
           <input
             type="email"
             name="email"
             placeholder="Email"
+            required
+            disabled={loading}
             className="bg-transparent border w-full border-white/40 rounded px-4 py-4 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-white"
           />
           <textarea
             name="message"
             rows={6}
             placeholder="Enter your message"
+            required
+            disabled={loading}
             className="bg-transparent border w-full border-white/40 rounded px-4 py-4 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-white"
           ></textarea>
           <button
             type="submit"
-            className="bg-white/20 w-fit hover:bg-white hover:text-black transition-all duration-300 px-14 py-4 rounded shadow-md mt-8"
+            disabled={loading}
+            className={`bg-white/20 w-fit hover:bg-white hover:text-black transition-all duration-300 px-14 py-4 rounded shadow-md mt-8 flex items-center justify-center gap-2 ${
+              loading ? "opacity-60 cursor-not-allowed" : ""
+            }`}
           >
-            Send Message
+            {loading ? (
+              <svg
+                className="animate-spin h-5 w-5 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 100 16v-4l-3 3 3 3v-4a8 8 0 01-8-8z"
+                ></path>
+              </svg>
+            ) : (
+              "Send Message"
+            )}
           </button>
 
           {successMessage && (

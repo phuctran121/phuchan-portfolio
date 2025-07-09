@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Orbitron } from "next/font/google";
 const orbitron = Orbitron({
   subsets: ["latin"],
-  weight: ["400", "700"], // Chọn trọng lượng phù hợp
+  weight: ["400", "700"],
 });
 
 interface AnimatedBorderProps {
@@ -17,25 +17,24 @@ interface AnimatedBorderProps {
 }
 
 export default function AnimatedBorder({
-  width = "400px",
+  // width = "400px",
   height = "auto",
   className = "",
   cornerSize = 200,
   number = "01",
   visbleBorder = false,
 }: AnimatedBorderProps) {
-  // Animation variants for the corners
   const cornerVariants = {
     initial: {
       width: cornerSize * 0.3,
-      height: cornerSize, // Initial height ratio
+      height: cornerSize,
       borderColor: "#504d55",
       borderStyle: "solid" as const,
     },
     animate: {
       width: [cornerSize * 0.4, cornerSize * 0.6, cornerSize * 0.4],
       height: [cornerSize, cornerSize * 0.6, cornerSize],
-      borderStyle: ["solid"], // Animate border style
+      borderStyle: ["solid"],
       transition: {
         duration: 5,
         ease: "easeInOut",
@@ -49,11 +48,9 @@ export default function AnimatedBorder({
       initial={{ opacity: 0, y: -10, filter: "blur(3px)" }}
       animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       transition={{ duration: 1 }}
-      className={`fixed top-1/2 left-1/2 hidden lg:block transform mt-5 container -translate-x-1/2 -translate-y-1/2 ${className}`}
-      style={{ width, height }}
+      className={`fixed top-1/2 mx-4 left-1/2 hidden lg:block transform mt-5 container -translate-x-1/2 -translate-y-1/2 ${className}`}
+      style={{ height }}
     >
-      {/* Colored line with 3 segments */}
-
       {/* Top Left Corner */}
       <motion.div
         className={`${
